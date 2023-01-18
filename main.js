@@ -30,8 +30,7 @@ let respuesta = [];
 const getLibros = async (titulo) => {
     spinner.style.display = 'block';
 
-    const respuesta = await axios.get(`http://openlibrary.org/search.json?title=${titulo}`);
-    console.log(respuesta.data.docs);
+    const respuesta = await axios.get(`https://openlibrary.org/search.json?title=${titulo}`);
 
     printLibros(respuesta.data.docs);
 }
@@ -69,9 +68,8 @@ const printLibros = (libros) => {
 
 //Funcion que devuelve la url de la portada del libro si existe o una imagen por defecto
 function devolverPortadaLibro(libro) {
-    console.log(libro);
     if (libro.cover_i) {
-        return `http://covers.openlibrary.org/b/id/${libro.cover_i}-M.jpg`;
+        return `https://covers.openlibrary.org/b/id/${libro.cover_i}-M.jpg`;
     } else {
         return 'https://via.placeholder.com/150x180?text=No+Image';
     }
