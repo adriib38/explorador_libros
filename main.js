@@ -38,7 +38,9 @@ const getLibros = async (titulo) => {
 //getLibros de la listaLibros
 let random = Math.floor(Math.random() * librosPopulares.length);
 getLibros(librosPopulares[random]);
-inputSearch.value = librosPopulares[random];
+//inputSearch.value = librosPopulares[random];
+//Mostrar spinner
+spinner.style.display = 'block';
 
 //Funcion que imprime los libros en el HTML con un template string
 const printLibros = (libros) => {  
@@ -48,6 +50,15 @@ const printLibros = (libros) => {
 
         const lib = document.createElement('div');
         
+        //Cargar el enlace de la casa del libro
+        let link = '';
+        if(!libro.isbn || libro.isbn.length === 0){ //Si no hay isbn (no hay enlace
+            link = "";
+        }else{
+            //link = `<a href="${enlaceCasaDelLibro(libro.isbn[0])}" target="_blank" class="btn btn-primary">Comprar</a>`;
+        }
+        link = `<a href="${enlaceCasaDelLibro(libro.title)}" target="_blank" class="btn btn-primary">Comprar</a>`;
+
         lib.innerHTML = `
             <div class="card">
                 <div class="card-body">
@@ -57,7 +68,7 @@ const printLibros = (libros) => {
                                       
                     <img src="${devolverPortadaLibro(libro)}" alt=""> 
                     <br>           
-                    <a href="https://openlibrary.org${libro.key}" target="_blank">Ver libro</a>        
+                    ${link}
                 </div>
             </div>
         `;
@@ -75,3 +86,6 @@ function devolverPortadaLibro(libro) {
     }
 }
 
+function enlaceCasaDelLibro(isbn) {
+    return `https://www.casadellibro.com/?q=${isbn}`;
+}
