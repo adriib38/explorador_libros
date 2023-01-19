@@ -28,9 +28,11 @@ let respuesta = [];
 
 //Funcion que hace la peticion HTTP a la API de OpenLibrary y devuelve los libros que coincidan con el titulo
 const getLibros = async (titulo) => {
-    spinner.style.display = 'block';
+    let numeroDeLibros = 0;
 
-    const respuesta = await axios.get(`https://openlibrary.org/search.json?title=${titulo}`);
+    spinner.style.display = 'block';
+    
+    const respuesta = await axios.get(`https://openlibrary.org/search.json?title=${titulo}&limit=20`);
 
     printLibros(respuesta.data.docs);
 }
@@ -46,6 +48,8 @@ spinner.style.display = 'block';
 const printLibros = (libros) => {  
     const contenedor = document.getElementById('deck');
     contenedor.innerHTML = '';
+    spinner.style.display = 'none';
+
     libros.forEach(libro => {
 
         const lib = document.createElement('div');

@@ -1,8 +1,10 @@
+
 body {
     background-color: #f5f5f5;
     font-family: 'Roboto', sans-serif;
     margin: 0;
 }
+
 
 #header {
     background-color: #353535;
@@ -14,23 +16,29 @@ body {
     padding: 0 20px;
 }
 
+h1 {
+    font-family: 'Roboto';
+}
+
 .card {
     width: 200px;
     height: 400px;
     margin: 10px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: white;
+    background-color: #353535;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    color: #f5f5f5;
 }
 
 .card img {
     width: 140px;
+    border: 1px solid #c4c4c4;
 }
 
 #form-search input {
@@ -54,6 +62,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 200px;
+    animation: aparecer 1s ease-in-out;
 }
 
 #deck > div {
@@ -70,11 +80,6 @@ body {
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 a {
     color: inherit;
 }
@@ -82,7 +87,6 @@ a {
 .card a {
     color: #3498db;
 }
-
 
 #footer {
     background-color: #353535;
@@ -94,4 +98,25 @@ a {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+*::selection {
+    background-color: #1b2024;
+    color: white;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
